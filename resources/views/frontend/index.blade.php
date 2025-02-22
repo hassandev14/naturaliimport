@@ -19,9 +19,11 @@
         align-items: center;
         height: 62vh;
         width: 100%;
+        position: relative;
         background: url("{{ asset('frontend/images/bg-imagee.jpg') }}") no-repeat center center;
         background-size: cover;
-        background-repeat: no-repeat; /* Prevents repeating */
+        background-repeat: no-repeat;
+        animation: fadeInBackground 1.5s ease-in-out;
     }
 
     .naturali-import-web-hero-banner {
@@ -29,21 +31,102 @@
         width: 100%;
         height: auto;
         object-fit: cover;
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+        animation: slideFadeZoom 1.8s ease-out forwards;
+    }
+
+    /* Text Overlay */
+    .hero-content {
+        position: absolute;
+        top: 30%;
+        left: 30%;
+        transform: translateY(-50%);
+        text-align: left;
+        color: white;
+        opacity: 0;
+        animation: fadeInText 2s ease-in-out forwards;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        animation: slideUp 1.5s ease-in-out forwards;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        text-align: center;
+        margin: 0 auto;
+        animation: fadeInText 1.8s ease-in-out forwards;
+    }
+
+    /* Background Fade-in Animation */
+    @keyframes fadeInBackground {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Image Slide-in + Fade-in + Zoom Animation */
+    @keyframes slideFadeZoom {
+        0% {
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+        }
+        50% {
+            opacity: 0.5;
+            transform: translateY(20px) scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Text Fade-in Animation */
+    @keyframes fadeInText {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Heading Slide-up Animation */
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
-    <!-- Search Form -->
-    <div id="search" class=""> 
-        <span class="close">X</span>
-        <form role="search" id="searchform" method="get">
-            <input value="" name="q" type="search" placeholder="Type to Search">
-        </form>
-    </div>
-    <!-- Banner -->
-    <section class="banner-con position-relative">
-        <div class="global_container_">
-            <img class="naturali-import-web-hero-banner" src="{{ asset('frontend/images/naturali_import_web_hero_.png') }}" alt="Naturali Import Hero Banner">
+
+<!-- Banner -->
+<section class="banner-con position-relative">
+    <div class="global_container_">
+        <img class="naturali-import-web-hero-banner" src="{{ asset('frontend/images/naturali_import_web_hero_.png') }}" alt="Naturali Import Hero Banner">
+        
+        <!-- Hero Text Overlay -->
+        <div class="hero-content">
+            <h1>Welcome to Naturali</h1>
+            <p>Experience the essence of nature with our premium organic products.</p>
         </div>
-    </section>
+    </div>
+</section>
 </div>
 <!-- Categories -->
 <section class="categories-con position-relative">
